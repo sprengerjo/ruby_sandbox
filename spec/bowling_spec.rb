@@ -1,40 +1,45 @@
-require  'Bowling'
+require 'Bowling'
 
-describe 'bowling score calculator' do
-    before(:each) do
-        @bowling = Bowling.new()
-    end
+describe 'bowling game calculation' do
 
-    it 'returns score of 0 when gutter games are scored' do
-        (1..20).each{ |_| @bowling.roll(0) }
-        
-        expect(@bowling.score()).to eq(0)
-    end
+  before(:each) do
+    @game = Bowling.new
+  end
 
-    it 'returns score of 20 when 1 pin games are scored' do
-        (1..20).each{ |_| @bowling.roll(1) }
-        
-        expect(@bowling.score()).to eq(20)
-    end
+  attr_reader :game
 
-    it 'adds the spare bonus when 1 spare is scored' do
-        @bowling.roll(4)
-        @bowling.roll(6)
-        (1..18).each{ |_| @bowling.roll(4) }
-        
-        expect(@bowling.score()).to eq(4 + 6 + 4 + 18 * 4)
-    end
+  it 'scores 0 for gutter games' do
+    (1..20).each {|_| game.roll(0)}
 
-    it 'adds the strike bonus when 1 strike is scored' do
-        @bowling.roll(10)
-        (1..18).each{ |_| @bowling.roll(4) }
-        
-        expect(@bowling.score()).to eq(10 + 4 + 4 + 18 * 4)
-    end
+    expect(game.score).to eq(0)
+  end
 
-    it 'returns 300 when a perfect game is scored' do
-        (1..12).each{ |_| @bowling.roll(10) }
-        
-        expect(@bowling.score()).to eq(300)
-    end
+  it 'scores 20 for 1 pin games' do
+    (1..20).each {|_| game.roll(1)}
+
+    expect(game.score).to eq(20)
+  end
+
+  it 'adds spare bonus to overall score' do
+    game.roll(4)
+    game.roll(6)
+    (1..18).each {|_| game.roll(4)}
+
+    expect(game.score).to eq(4 + 6 + 4 + 18 * 4)
+  end
+
+  it 'adds strike bonus to overall score' do
+    game.roll(10)
+    (1..18).each {|_| game.roll(4)}
+
+    expect(game.score).to eq(10 + 4 + 4 + 18 * 4)
+  end
+
+  it 'scores a perfect game with 300' do
+    (1..12).each {|_| game.roll(10)}
+
+    expect(game.score).to eq(300)
+  end
+
 end
+
