@@ -1,22 +1,23 @@
+# algorithms goe here.
 class Algorithms
   @cache = { 0 => 1 }
 
-  def self.twice_linear(n)
-    a = 1
-    while n > 0
-      a = knuth(a)
-      n -= 1
+  def self.twice_linear(up_to)
+    curr = 1
+    while up_to > 0
+      curr = knuth(curr)
+      up_to -= 1
     end
-    a
+    curr
   end
 
-  def self.knuth(a)
-    unless @cache.key?(a)
-      @cache[a] = 1 + [
-        2 * knuth(((a - 1) / 2).floor),
-        3 * knuth(((a - 1) / 3).floor)
+  def self.knuth(curr)
+    unless @cache.key?(curr)
+      @cache[curr] = 1 + [
+        2 * knuth(((curr - 1) / 2).floor),
+        3 * knuth(((curr - 1) / 3).floor)
       ].min
     end
-    @cache[a]
+    @cache[curr]
   end
 end

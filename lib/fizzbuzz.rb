@@ -1,15 +1,15 @@
-def fizzbuzz(n)
-  if n % 15 == 0
+def fizzbuzz(curr)
+  if (curr % 15).zero?
     'fizzbuzz'
-  elsif n % 3 == 0
+  elsif (curr % 3).zero?
     'fizz'
-  elsif n % 5 == 0
+  elsif (curr % 5).zero?
     'buzz'
   else
-    n.to_s
+    curr.to_s
   end
 end
 
-def fizzbuzz_upto(n)
-  (1..n).map { |n| fizzbuzz(n) }
+def fizzbuzz_upto(uo_to)
+  (1..uo_to).map { |curr| fizzbuzz(curr) }
 end

@@ -8,8 +8,8 @@ class Bowling
     scores.push(pins)
   end
 
-  def score()
-    scores.reduce(0) {|sum, curr| sum + curr} + bonus(scores)
+  def score
+    scores.reduce(0) { |sum, curr| sum + curr } + bonus(scores)
   end
 
   private
@@ -26,9 +26,7 @@ class Bowling
     else
       bonus(tail)
     end
-
   end
 
   attr_reader :scores
-
 end

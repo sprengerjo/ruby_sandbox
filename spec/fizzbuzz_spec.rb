@@ -18,6 +18,7 @@ describe 'fizzbuzz' do
   end
 
   it 'returns fizzbuzz sequence ending with "fizzbuzz" when passed 15' do
-    expect(fizzbuzz_upto(15)).to eq(%w[1 2 fizz 4 buzz fizz 7 8 fizz buzz 11 fizz 13 14 fizzbuzz])
+    expect(fizzbuzz_upto(15))
+      .to eq(%w[1 2 fizz 4 buzz fizz 7 8 fizz buzz 11 fizz 13 14 fizzbuzz])
   end
 end
